@@ -33,9 +33,12 @@ const DeleteModal = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        title={"Delete Modal"}
+        title={"Delete User Record"}
+        // confirmLoading={true}
+        okText={"Yes"}
+        cancelText={"No"}
       >
-        <p>Delete Modal</p>
+        <p>Are you sure you want to delete this user record?</p>
       </Modal>
     </>
   );

@@ -5,3 +5,4 @@ export { default as AdModal } from "./AdModal";
 export { default as EditModal } from "./EditModal";
 export { default as DeleteModal } from "./DeleteModal";
 export { default as ActionItems } from "./ActionItems";
+export { default as GenericForm } from "./GenericForm";
