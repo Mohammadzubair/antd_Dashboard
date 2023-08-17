@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Modal } from "../../UI";
 import { PlusSquareFilled } from "@ant-design/icons";
+import GenericForm from "../GenericForm";
 
 const AdModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,9 +28,10 @@ const AdModal = () => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        title={"Ad Modal"}
+        title={"Ad New User"}
+        okText={"Save"}
       >
-        <p>Ad Modal</p>
+        <GenericForm />
       </Modal>
     </>
   );
