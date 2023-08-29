@@ -1,10 +1,14 @@
 import { Space } from "../../UI";
 import { AdModal, DeleteModal, EditModal } from "..";
 
-const ActionItems = () => {
+interface ActionItemsProps {
+  onAdd: () => void;
+}
+
+const ActionItems = ({ onAdd }: ActionItemsProps) => {
   return (
     <Space wrap>
-      <AdModal />
+      <AdModal onAdd={onAdd} />
       <EditModal />
       <DeleteModal />
     </Space>

@@ -3,18 +3,22 @@ import { Button, Modal } from "../../UI";
 import { PlusSquareFilled } from "@ant-design/icons";
 import GenericForm from "../GenericForm";
 
-const AdModal = () => {
+interface AdModalProps {
+  onAdd: () => void;
+}
+
+const AdModal = ({ onAdd }: AdModalProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
+  const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const handleFormSubmit = () => {
+    console.log("Modal for data.....");
   };
   return (
     <>
@@ -22,16 +26,23 @@ const AdModal = () => {
         size="small"
         type="primary"
         onClick={showModal}
+        onSubmit={() => {
+          onAdd();
+        }}
         icon={<PlusSquareFilled />}
       />
       <Modal
         open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        title={"Ad New User"}
-        okText={"Save"}
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={() => {}}>
+            Submit
+          </Button>,
+        ]}
       >
-        <GenericForm />
+        <GenericForm dataSubmit={handleFormSubmit()} />
       </Modal>
     </>
   );
