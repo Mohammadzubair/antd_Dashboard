@@ -1,37 +1,56 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button, Modal } from "../../UI";
 import { PlusSquareFilled } from "@ant-design/icons";
-import GenericForm from "../GenericForm";
+import UserDetailsForm from "../UserDetailsForm";
+import { UseNewUserData } from "../../hooks";
 
-const AdModal = () => {
+interface AdModalProps {
+  onAdd: () => void;
+}
+
+const AdModal = ({ onAdd }: AdModalProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const showModal = () => {
     setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const userDetailsRef = useRef();
   return (
     <>
       <Button
         size="small"
         type="primary"
         onClick={showModal}
+        onSubmit={() => {
+          onAdd();
+        }}
         icon={<PlusSquareFilled />}
       />
       <Modal
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
-        title={"Ad New User"}
-        okText={"Save"}
+        footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            htmlType="submit"
+            // onClick={() => console.log(userDetailsRef.current?.onAdd?.())}
+            onClick={() => userDetailsRef.current?.onAdd?.()}
+          >
+            Submit
+          </Button>
+        ]}
       >
-        <GenericForm />
+        <UserDetailsForm onAdd={UseNewUserData()} ref={userDetailsRef} />
+        {/* <UserDetailsForm ref={userDetailsRef} /> */}
       </Modal>
     </>
   );

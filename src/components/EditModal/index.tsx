@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Modal } from "../../UI";
 import { EditFilled } from "@ant-design/icons";
-import GenericForm from "../GenericForm";
+import UserDetailsForm from "../UserDetailsForm";
 
 const EditModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +31,7 @@ const EditModal = () => {
         title={"Edit User Deatils"}
         okText={"Save"}
       >
-        <GenericForm />
+        <UserDetailsForm />
       </Modal>
     </>
   );
